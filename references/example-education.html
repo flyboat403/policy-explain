@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《"人工智能+教育"行动计划》五维解读</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #2C2C2C;
+  --ink-light: #555;
+  --ink-muted: #777;
+  --paper: #FEFEFA;
+  --paper-dark: #F7F5F0;
+  --rule: #E0DCD4;
+  --rule-light: #EDEAE3;
+  --accent: #3A5F8A;
+  --accent-light: #E8EFF5;
+  --s1: #3A5F8A;
+  --s2: #4A7A5F;
+  --s3: #8A5F3A;
+  --s4: #6A4A7A;
+  --s5: #3A6A7A;
+  --tag-bg: rgba(58,95,138,0.06);
+  --sidebar-w: 0px;
+  --topbar-h: 56px;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--topbar-h) + 20px); }
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.8;
+  font-size: 19px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ Topbar ═══ */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--topbar-h);
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  z-index: 100;
+  display: flex; align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+}
+.topbar-logo {
+  font-family: Georgia, 'SimSun', 'STSong', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.topbar-ref {
+  font-size: 16px; color: var(--ink-muted);
+  font-family: 'Courier New', Consolas, monospace;
+  letter-spacing: 0.5px;
+}
+.topbar-spacer { flex: 1; }
+.topbar-toggle {
+  display: none !important;
+  background: none; border: none;
+  font-size: 26px; cursor: pointer;
+  color: var(--ink);
+  padding: 4px 8px;
+}
+
+/* ═══ Sidebar ═══ */
+.sidebar {
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  width: var(--sidebar-w);
+  height: calc(100vh - var(--topbar-h));
+  background: var(--paper-dark);
+  border-right: 1px solid var(--rule);
+  overflow-y: auto;
+  padding: 24px 0;
+  z-index: 90;
+  transition: transform 0.3s ease;
+}
+.sidebar-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 0 20px 16px;
+  border-bottom: 1px solid var(--rule-light);
+}
+.nav-section {
+  padding: 12px 0;
+}
+.nav-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink-muted);
+  padding: 0 20px 6px;
+  letter-spacing: 1px;
+}
+.nav-item {
+  display: block;
+  padding: 6px 20px 6px 28px;
+  color: var(--ink-light);
+  text-decoration: none;
+  font-size: 17px;
+  line-height: 1.6;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+}
+.nav-item:hover {
+  color: var(--accent);
+  background: rgba(58,95,138,0.04);
+  border-left-color: var(--accent);
+}
+.nav-item.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 500;
+}
+.nav-sub {
+  padding-left: 40px;
+  font-size: 16px;
+}
+
+/* ═══ Main ═══ */
+.main {
+  margin-left: var(--sidebar-w);
+  margin-top: var(--topbar-h);
+  min-height: calc(100vh - var(--topbar-h));
+}
+.content {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px clamp(24px, 5vw, 60px) 80px;
+}
+
+/* ═══ Hero ═══ */
+.hero {
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+.hero-ref {
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 16px;
+  color: var(--ink-muted);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: Georgia, 'SimSun', 'STSong', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.hero-sub {
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 300;
+  color: var(--ink-light);
+  margin-bottom: 20px;
+}
+.hero-meta {
+  font-size: 17px;
+  color: var(--ink-muted);
+  display: flex; flex-wrap: wrap; gap: 16px;
+}
+
+/* ═══ Section ═══ */
+.section {
+  margin-bottom: 56px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-num {
+  font-family: Georgia, 'SimSun', 'STSong', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+.section h2 {
+  font-family: Georgia, 'SimSun', 'STSong', serif;
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* ═══ Meta Row ═══ */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: var(--paper-dark);
+  border-radius: 4px;
+  font-size: 17px;
+}
+.meta-item { flex: 1; min-width: 200px; }
+.meta-label {
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+  font-size: 16px;
+}
+.meta-value { color: var(--ink-light); line-height: 1.5; }
+
+/* ═══ Content ═══ */
+.text p {
+  margin-bottom: 16px;
+  color: var(--ink-light);
+}
+.text strong { color: var(--ink); font-weight: 600; }
+
+/* ═══ Lists ═══ */
+.content ul {
+  margin: 12px 0 20px 20px;
+  color: var(--ink-light);
+}
+.content li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+.content li::marker { color: var(--accent); }
+
+/* ═══ Tables ═══ */
+.wiki-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 17px;
+}
+.wiki-table th {
+  background: var(--paper-dark);
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.wiki-table td {
+  border: 1px solid var(--rule);
+  padding: 10px 14px;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.wiki-table tr:nth-child(even) td {
+  background: rgba(0,0,0,0.01);
+}
+
+/* ═══ Callout ═══ */
+.callout {
+  margin: 24px 0;
+  padding: 16px 20px;
+  background: var(--accent-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.callout-label {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* ═══ Tags ═══ */
+.tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 12px 0 20px;
+}
+.tag {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 2px;
+  background: var(--tag-bg);
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+/* ═══ Arrow ═══ */
+.arrow-row {
+  text-align: center;
+  padding: 8px 0;
+  color: var(--ink-muted);
+  font-size: 18px;
+  letter-spacing: 6px;
+}
+
+/* ═══ H3 ═══ */
+h3 {
+  font-family: Georgia, 'SimSun', 'STSong', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 32px 0 16px;
+  color: var(--ink);
+}
+
+/* ═══ Back to top ═══ */
+.back-top {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 17px; color: var(--ink-muted);
+  text-decoration: none;
+  margin-top: 40px;
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+  transition: color 0.2s;
+}
+.back-top:hover { color: var(--accent); }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .topbar-toggle { display: block; }
+  .topbar-ref { display: none; }
+}
+
+/* ═══ Overlay ═══ */
+.overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 85;
+}
+.overlay.show { display: block; }
+
+/* ═══ Footer ═══ */
+.footer {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-size: 16px;
+  color: var(--ink-muted);
+  line-height: 2;
+}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<header class="topbar">
+  <button class="topbar-toggle" onclick="toggleSidebar()" aria-label="菜单">☰</button>
+  <div class="topbar-logo">AI+教育 解读</div>
+  <span class="topbar-ref">教科信〔2026〕1号</span>
+  <div class="topbar-spacer"></div>
+</header>
+
+<!-- Overlay -->
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-title">目录导航</div>
+  <nav>
+    <a href="#top" class="nav-item active">总览</a>
+
+    <div class="nav-section">
+      <div class="nav-label">五个维度</div>
+      <a href="#d1" class="nav-item">一、背景与风向</a>
+      <a href="#d2" class="nav-item">二、核心任务</a>
+      <a href="#d3" class="nav-item">三、职教定位</a>
+      <a href="#d4" class="nav-item">四、教学改革</a>
+      <a href="#d5" class="nav-item">五、个人机遇</a>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">附录</div>
+      <a href="#action" class="nav-item">行动清单</a>
+    </div>
+  </nav>
+</aside>
+
+<!-- Main -->
+<main class="main" id="top">
+<div class="content">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-ref">教科信〔2026〕1号 · 五部门联合印发</div>
+  <h1>《"人工智能+教育"行动计划》</h1>
+  <div class="hero-sub">五维解读：面向职教教师的行动指南</div>
+  <div class="hero-meta">
+    <span>📄 教育部 · 发改委 · 工信部 · 科技部 · 国家数据局</span>
+    <span>📅 2026年4月</span>
+    <span>🎯 目标：2030年建成全学段AI教育体系</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Dimension 1 -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="d1">
+  <div class="section-header">
+    <span class="section-num">一</span>
+    <h2>背景与风向</h2>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">核心追问</div>
+      <div class="meta-value">国家为什么要发这个文？在这个时间点意味着什么？</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">关键词</div>
+      <div class="meta-value">紧迫性 · 突破口 · 新赛道 · 转型</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">职教教师的思考</div>
+      <div class="meta-value">这是大趋势吗？如果是，我的教学不能原地踏步，否则迟早被动。</div>
+    </div>
+  </div>
+
+  <div class="text">
+    <p><strong>发文时机</strong>：2026年4月，正值人工智能技术从"工具"跃升为"基础设施"的关键节点。教育部联合五部门首次将AI与教育进行系统性顶层规划，而非零散推进。</p>
+
+    <p><strong>三个风向信号：</strong></p>
+    <ul>
+      <li><strong>AI已成为国家战略必争领域</strong>——文件由五部门联合签发，规格高、协调面广，说明不是"教育口自己搞"，而是国家意志。</li>
+      <li><strong>窗口期在2026–2030</strong>——留给学校和教师转型的时间只有4年，2030年要达到"建成全学段AI教育体系"的目标，时间紧迫。</li>
+      <li><strong>职教被明确点名</strong>——文件专门设"职业教育传统专业升级转型"条目，说明职教不是"跟着做"，而是重点改造对象。</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">💡 结论</div>
+    这不是"将来时"，是"现在进行时"。职教院校的AI化转型已从"可选项"变为"必选项"。
+  </div>
+
+  <div class="tags">
+    <span class="tag">立德树人</span>
+    <span class="tag">素养为先</span>
+    <span class="tag">应用驱动</span>
+    <span class="tag">智能向善</span>
+  </div>
+</div>
+
+<div class="arrow-row">↓ ↓ ↓</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Dimension 2 -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="d2">
+  <div class="section-header">
+    <span class="section-num">二</span>
+    <h2>核心任务</h2>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">核心追问</div>
+      <div class="meta-value">文件要求干什么？有哪些硬性指标？</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">关键词</div>
+      <div class="meta-value">平台 · 资源 · 标准 · 体系 · 治理</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">职教教师的思考</div>
+      <div class="meta-value">学校接下来会推动什么、检查什么？比如课程资源上平台、教案电子化、数据留痕等。</div>
+    </div>
+  </div>
+
+  <div class="text">
+    <p>文件提出了<strong>可量化、可检查</strong>的核心任务：</p>
+  </div>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:20%">任务类型</th><th style="width:40%">具体要求</th><th style="width:40%">对职教教师的影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>平台建设</strong></td><td>国家教育智能算力服务平台、国家平台升级个性化服务</td><td>课程资源需接入国家平台，教案/课件将实现数字化留痕</td></tr>
+      <tr><td><strong>资源开发</strong></td><td>建设国家基础语料库与数据集、分学段AI教育大模型</td><td>教师需要贡献教学案例、实训数据进入语料库</td></tr>
+      <tr><td><strong>标准制定</strong></td><td>教师AI素养国标、AI应用/大模型/数据安全标准</td><td>教师将面临AI素养测评，未达标可能影响职称评定</td></tr>
+      <tr><td><strong>体系构建</strong></td><td>"AI+"专业体系/课程体系/教学体系</td><td>现有专业需融入AI元素，课程大纲需重构</td></tr>
+      <tr><td><strong>数据治理</strong></td><td>教育智能大脑、学生数字档案、人才供需大数据平台</td><td>教学过程数据化，学生档案将包含AI学习轨迹</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">💡 结论</div>
+    学校将推动"课程资源上平台、教案AI辅助生成、教学过程数据留痕、教师AI素养测评"等工作。建议提前准备。
+  </div>
+</div>
+
+<div class="arrow-row">↓ ↓ ↓</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Dimension 3 -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="d3">
+  <div class="section-header">
+    <span class="section-num">三</span>
+    <h2>职教定位</h2>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">核心追问</div>
+      <div class="meta-value">专门提到职业教育或职教院校的地方在哪？</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">关键词</div>
+      <div class="meta-value">产教融合 · 技能 · 实训 · 就业 · 行业</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">职教教师的思考</div>
+      <div class="meta-value">这不仅是通识教育的事，我的专业技能课如何结合政策（如数字化+技能）？</div>
+    </div>
+  </div>
+
+  <div class="text">
+    <p>文件在第二部分第（三）条<strong>专设"推动职业教育传统专业的升级转型"</strong>，核心内容如下：</p>
+  </div>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:50%">文件原文要点</th><th style="width:50%">职教教师行动指向</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"及时研判AI对职业教育的结构性影响"</td><td>教师需分析本专业的AI替代风险和升级机遇</td></tr>
+      <tr><td>"调整优化技能型人才培养要求"</td><td>人才培养方案需修订，增加AI素养和技能要求</td></tr>
+      <tr><td>"推动传统专业智能化升级"</td><td>汽修→智能网联检测；电商→AI运营；护理→智慧护理</td></tr>
+      <tr><td>"科学设计'AI+'专业体系、课程体系、教学体系"</td><td>开发"AI+专业"融合课程，重构教学内容</td></tr>
+      <tr><td>"实施高技能人才集群培养计划"</td><td>参与校企协同培养，对接AI相关新兴岗位</td></tr>
+      <tr><td>"联合行业企业共建实习实训基地"</td><td>与企业共同开发AI实训项目，引入行业真实案例</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">💡 结论</div>
+    文件不仅要求"AI通识课进职教"，更要求<strong>"专业技能课智能化"</strong>。每个专业都需要回答：我的专业如何"+"AI？
+  </div>
+</div>
+
+<div class="arrow-row">↓ ↓ ↓</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Dimension 4 -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="d4">
+  <div class="section-header">
+    <span class="section-num">四</span>
+    <h2>教学改革</h2>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">核心追问</div>
+      <div class="meta-value">对课堂、教材、教法提出了什么具体新要求？</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">关键词</div>
+      <div class="meta-value">模式 · 评价 · 素养 · AI · 混合式</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">职教教师的思考</div>
+      <div class="meta-value">明天的课怎么上？是不是要引入AI辅助？评价方式是不是要加过程性数据？</div>
+    </div>
+  </div>
+
+  <div class="text">
+    <p>文件第三部分"深度融合"对教学提出了<strong>系统性要求</strong>：</p>
+  </div>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:15%">教学环节</th><th style="width:35%">文件要求</th><th style="width:50%">教师行动方向</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>课前</strong></td><td>AI辅助备课、学情分析、多模态资源生成</td><td>使用AI生成教案、课件、预习材料，分析学生前置知识</td></tr>
+      <tr><td><strong>课中</strong></td><td>人机协同授课、虚拟仿真实验、个性化反馈</td><td>引入AI助教、虚拟实训环境，实现"AI+教师"双师模式</td></tr>
+      <tr><td><strong>课后</strong></td><td>智能批改答疑、AI循证教研</td><td>用AI批改作业、分析错题、生成个性化辅导方案</td></tr>
+      <tr><td><strong>教材</strong></td><td>数字教材和新一代智慧慕课</td><td>开发数字教材，融合AI交互元素</td></tr>
+      <tr><td><strong>评价</strong></td><td>纵向过程性评价+横向综合性评价</td><td>从"期末一考定音"转向"数据驱动的过程性评价"</td></tr>
+      <tr><td><strong>素养</strong></td><td>教师AI素养标准、分层分类培训全覆盖</td><td>教师需完成AI素养培训，取得相应等级认证</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">💡 结论</div>
+    课堂教学模式将从"教师讲—学生听"转向"AI辅助备课—人机协同授课—数据驱动评价"。教师的核心竞争力不再是"知识传授"，而是<strong>"教学设计+AI工具运用+育人引导"</strong>。
+  </div>
+</div>
+
+<div class="arrow-row">↓ ↓ ↓</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Dimension 5 -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="d5">
+  <div class="section-header">
+    <span class="section-num">五</span>
+    <h2>个人机遇</h2>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-label">核心追问</div>
+      <div class="meta-value">这里面藏着哪些项目、课题或评奖机会？</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">关键词</div>
+      <div class="meta-value">示范 · 精品 · 试点 · 名师 · 激励</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">职教教师的思考</div>
+      <div class="meta-value">我能申报什么？我现在手头的教改能不能换一种更"对文件"的表述？</div>
+    </div>
+  </div>
+
+  <h3>可申报机会</h3>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:25%">机会类型</th><th style="width:35%">文件依据</th><th style="width:40%">申报建议</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>AI应用中试基地</strong></td><td>"建设国家AI教育应用中试基地"</td><td>以专业为单位申报AI教学应用试点</td></tr>
+      <tr><td><strong>开源社区共建</strong></td><td>"建设AI学习社区，师生共创应用"</td><td>组织教师+学生团队开发AI教学工具</td></tr>
+      <tr><td><strong>数字教材</strong></td><td>"研发数字教材和新一代智慧慕课"</td><td>结合专业开发AI融合型数字教材</td></tr>
+      <tr><td><strong>教学成果奖</strong></td><td>"教学成果奖增设智慧教育类别"</td><td>将现有教改成果按"智慧教育"方向重新包装申报</td></tr>
+      <tr><td><strong>教师AI素养培训</strong></td><td>"分层分类培训全覆盖"</td><td>主动参与培训，获取认证，为职称评定积累条件</td></tr>
+    </tbody>
+  </table>
+
+  <h3>实操建议：如何"包装"现有教改</h3>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:50%">现有工作</th><th style="width:50%">换一种"对文件"的表述</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>在线课程资源建设</td><td>→ 基于国家平台的"个性化智能推送资源体系"</td></tr>
+      <tr><td>实训软件使用</td><td>→ "虚拟仿真实验+人机协同授课"模式</td></tr>
+      <tr><td>学生平时成绩记录</td><td>→ "数据驱动的纵向过程性评价体系"</td></tr>
+      <tr><td>校企合作开发课程</td><td>→ "'AI+'专业体系校企协同构建"</td></tr>
+      <tr><td>教师培训</td><td>→ "教师AI素养分层分类能力提升工程"</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">💡 结论</div>
+    文件不是"额外负担"，而是教改成果的<strong>"放大器"</strong>。将现有工作与文件表述对齐，可以显著提升申报成功率和项目层次。
+  </div>
+</div>
+
+<div class="arrow-row">↓ ↓ ↓</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- Action List -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="section" id="action">
+  <div class="section-header">
+    <span class="section-num">附</span>
+    <h2>职教教师行动清单</h2>
+  </div>
+
+  <table class="wiki-table">
+    <thead>
+      <tr><th style="width:25%">时间</th><th style="width:55%">行动</th><th style="width:20%">对应维度</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>短期（1-3月）</strong></td><td>参加教师AI素养培训，完成基础认证</td><td>二、四</td></tr>
+      <tr><td><strong>中期（3-6月）</strong></td><td>修订1门课程教案，融入AI辅助备课/授课环节</td><td>三、四</td></tr>
+      <tr><td><strong>中期（6-12月）</strong></td><td>开发"AI+专业"融合课程1门，申报校级试点</td><td>三、五</td></tr>
+      <tr><td><strong>长期（1-2年）</strong></td><td>形成智慧教学成果，申报教学成果奖（智慧教育类）</td><td>五</td></tr>
+      <tr><td><strong>持续</strong></td><td>关注国家平台资源上传、数据留痕、学生数字档案建设</td><td>二</td></tr>
+    </tbody>
+  </table>
+
+  <a href="#top" class="back-top">↑ 回到顶部</a>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  教科信〔2026〕1号 · 教育部 · 发改委 · 工信部 · 科技部 · 国家数据局<br>
+  本解读仅供学习参考，请以正式文件为准
+</div>
+
+</div>
+</main>
+
+<script>
+// Sidebar toggle
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+
+// Active nav tracking
+const sections = document.querySelectorAll('.section, #top');
+const navItems = document.querySelectorAll('.nav-item');
+
+function updateActive() {
+  let current = '';
+  sections.forEach(s => {
+    const rect = s.getBoundingClientRect();
+    if (rect.top <= 100) current = s.id;
+  });
+  navItems.forEach(item => {
+    item.classList.toggle('active', item.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateActive);
+updateActive();
+
+// Close sidebar on nav click (mobile)
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    if (window.innerWidth <= 900) toggleSidebar();
+  });
+});
+</script>
+</body>
+</html>

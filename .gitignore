@@ -1,0 +1,7 @@
+# 身份档案属用户个人数据，绝不提交
+.profile.json
+
+# 编辑器与系统产物
+.DS_Store
+Thumbs.db
+*.swp
