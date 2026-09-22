@@ -1,0 +1,3 @@
+# 统一 LF 行尾。本仓库 core.autocrlf=false，
+# 若不显式声明，Windows 下带 CRLF 的编辑会被原样提交进仓库。
+* text=auto eol=lf
